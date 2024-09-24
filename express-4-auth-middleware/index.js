@@ -7,8 +7,12 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = "randomString";
 
 app.use(express.json());
-
+ 
 const users = [];
+
+app.get('/',(req,res) => {
+    res.sendFile(__dirname+"/public/index.html");
+})
 
 app.post('/signup', (req, res) => {
     const username = req.body.username;
@@ -52,7 +56,8 @@ app.post('/signin', (req, res) => {
     } else {
         res.status(403).send({
             message: 'Invalid username or password'
-        });
+            
+        })
     }
 });
 
